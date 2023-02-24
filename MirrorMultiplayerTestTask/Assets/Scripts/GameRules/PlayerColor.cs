@@ -5,13 +5,14 @@ namespace MirrorMultiplayerTestTask.Movement
 {
     public class PlayerColor : NetworkBehaviour
     {
-        [SerializeField] private Color32 defaultColor = Color.black;
-        [SerializeField] private Color32 hitColor = Color.white;
+        // TODO move to settings?
+        public Color32 DefaultColor = Color.black;
+        public Color32 HitColor = Color.white;
 
-        // Color32 packs to 4 bytes
         [SyncVar(hook = nameof(SetColor))]
-        private Color32 color = Color.black;
+        public Color32 CurrentColor = Color.black;
 
+        // TODO assign instead of getting
         private Material cachedMaterial;
 
         void SetColor(Color32 oldColor, Color32 newColor)
@@ -21,6 +22,8 @@ namespace MirrorMultiplayerTestTask.Movement
                 cachedMaterial = GetComponentInChildren<Renderer>().material;
             }
             cachedMaterial.color = newColor;
+            // TODO remove all debug logs
+            Debug.LogWarning($"Changed color");
         }
 
         void OnDestroy()

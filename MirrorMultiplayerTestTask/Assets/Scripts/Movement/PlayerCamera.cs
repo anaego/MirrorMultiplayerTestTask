@@ -7,7 +7,9 @@ namespace MirrorMultiplayerTestTask.Movement
 {
     public class PlayerCamera : NetworkBehaviour
     {
-        Camera mainCamera;
+        [SerializeField] private MovementSettingsScriptableObject movementSettings;
+        
+        private Camera mainCamera;
 
         void Awake()
         {
@@ -17,7 +19,8 @@ namespace MirrorMultiplayerTestTask.Movement
         private void Update()
         {
             // TODO clamp / change to rotate around player pivot?
-            mainCamera.transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), 0, 0) * Time.deltaTime * 75);
+            // TODO Rotate around
+            mainCamera.transform.Rotate(new Vector3(- Input.GetAxis("Mouse Y"), 0, 0) * Time.deltaTime * movementSettings.VerticalTurnSpeed);
         }
 
         public override void OnStartLocalPlayer()

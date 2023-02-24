@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 4822224316094678}
   - component: {fileID: 114402732107420660}
   - component: {fileID: 114265392388239132}
-  - component: {fileID: 6799120071495980942}
   - component: {fileID: 143011667059871024}
   - component: {fileID: -6233809968765690729}
+  - component: {fileID: 1605164818916044615}
   - component: {fileID: 5415194000932531981}
   - component: {fileID: -5687780699746861888}
   - component: {fileID: 1255730031420650643}
   - component: {fileID: 7277218083668450536}
-  - component: {fileID: 1605164818916044615}
+  - component: {fileID: 5285858745411860982}
   m_Layer: 0
   m_Name: GamePlayer
   m_TagString: Player
@@ -87,20 +87,6 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
---- !u!136 &6799120071495980942
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480027675339556}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &143011667059871024
 CharacterController:
   m_ObjectHideFlags: 0
@@ -135,6 +121,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1605164818916044615
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480027675339556}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 2.5, z: 1.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5415194000932531981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,8 +149,6 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  index: 0
-  score: 0
 --- !u!114 &-5687780699746861888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,9 +164,12 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  color:
+  defaultColor:
     serializedVersion: 2
     rgba: 4278190080
+  hitColor:
+    serializedVersion: 2
+    rgba: 4294967295
 --- !u!114 &1255730031420650643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,8 +186,10 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   characterController: {fileID: 143011667059871024}
-  moveSpeedMultiplier: 8
-  turnSpeed: 75
+  playerScore: {fileID: 5415194000932531981}
+  playerColor: {fileID: -5687780699746861888}
+  movementSettings: {fileID: 11400000, guid: 058da7fefbbe39a4982b8a820f117dc8, type: 2}
+  gameRulesSettings: {fileID: 11400000, guid: e308ff4a96566d249a85463746b7c582, type: 2}
 --- !u!114 &7277218083668450536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,19 +205,23 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
---- !u!65 &1605164818916044615
-BoxCollider:
+  movementSettings: {fileID: 11400000, guid: 058da7fefbbe39a4982b8a820f117dc8, type: 2}
+--- !u!114 &5285858745411860982
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480027675339556}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6, y: 2.1, z: 0.6}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7345c75e85cb1bd4e9314a5e6ccf326e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  playerController: {fileID: 1255730031420650643}
 --- !u!1 &4926068573968176962
 GameObject:
   m_ObjectHideFlags: 0
